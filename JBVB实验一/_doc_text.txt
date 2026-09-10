@@ -1,0 +1,1219 @@
+﻿
+《JAVA框架技术（一）》
+课程实验指导书
+（AI 赋能版）
+
+
+ |  |  | 课程代码
+ |  |  | 1960229
+ |  |  | 课程名称
+ |  |  | JAVA框架技术（一）
+ |  |  | 课程类别
+ |  |  | 专业课（选修）
+ |  |  | 总 学 分
+ |  |  | 2.5 学分
+ |  |  | 总 学 时
+ |  |  | 48 学时（理论 32 + 实验 16 + 双师 2）
+ |  |  | 开课学期
+ |  |  | 第五学期
+ |  |  | 适用专业
+ |  |  | 软件工程专业
+ |  |  | 先修课程
+ |  |  | JAVA Web 开发技术、数据库概论
+ |  |  | 实验项目
+ |  |  | 实验一：AI 赋能 MyBatis 与 MyBatis-Plus 环境搭建及 CRUD 实操（6 学时）
+实验二：AI 赋能 SSM 框架整合与 EMP 员工管理 MIS 系统开发（10 学时，含双师课堂 2 学时）
+ |  |  | 
+ |  |  | 
+ |  |  | 实验环境
+ |  |  | IntelliJ IDEA + Maven + MySQL + Git + Tomcat + AI 编程插件（通义灵码 / GitHub Copilot / CodeGeeX）+ ApiFox
+ |  |  | 
+ |  |  | 
+ |  |  | 主教材
+ |  |  | 《Java EE 企业级应用开发教程（Spring+Spring MVC+MyBatis）（第 3 版）》，黑马程序员组编，人民邮电出版社，2023 年
+ |  |  | 
+ |  |  | 
+ |  |  | 开课学期
+ |  |  | 2026—2027 学年 第一学期（24 级）
+ |  |  | 
+ |  |  | 
+
+
+
+第一部分　实验总则
+一、实验教学目标
+本课程实验共 16 学时，是《JAVA框架技术（一）》课程“懂原理、会编码、善工具、能落地”能力体系的核心实践环节。依托 Spring、SpringMVC、MyBatis（含 MyBatis-Plus）三大主流轻量级框架，融合 AI 辅助开发、智能调试、代码生成与工程化重构等前沿技术，面向企业真实项目场景开展训练。通过本课程实验，学生应达到以下目标：
+1. 独立完成 MyBatis / MyBatis-Plus 持久层开发环境的搭建与调试，掌握基础 CRUD、动态 SQL、多条件查询、批量操作与分页功能的开发；
+2. 独立完成 SSM（Spring + SpringMVC + MyBatis-Plus）全注解框架整合，掌握三层架构（Controller–Service–Mapper）的开发规范；
+3. 熟练运用 AI 编程辅助工具（通义灵码、GitHub Copilot、CodeGeeX）完成依赖配置、代码生成、错误排查与性能优化，并能对 AI 生成代码进行甄别、校验、修正与工程化改造；
+4. 掌握日志分析（Log4j）、单元测试（JUnit）与接口测试（ApiFox）等质量保障手段，具备独立排查框架配置异常、SQL 执行异常及数据映射错误的能力；
+5. 树立“AI 辅助、人脑主导”的开发理念，养成编码规范、分层清晰、注释完整、日志健全的企业级开发习惯。
+二、实验总体安排
+ |  |  | 实验编号
+ |  |  | 实验名称
+ |  |  | 学时
+ |  |  | 实验类型
+ |  |  | 对应章节
+ |  |  | 实验一
+ |  |  | AI 赋能 MyBatis 与 MyBatis-Plus 环境搭建及 CRUD 实操
+ |  |  | 6
+ |  |  | 验证性 + 设计性
+ |  |  | 第一章（第 1、2、4、5 节）
+ |  |  | 实验二
+ |  |  | AI 赋能 SSM 框架整合与 EMP 员工管理 MIS 系统开发
+ |  |  | 10（含双师课堂 2）
+ |  |  | 综合性 + 设计性
+ |  |  | 第二章（第 1—5 节）
+ |  |  | 合计
+ |  |  | —
+ |  |  | 16
+ |  |  | —
+ |  |  | —
+
+三、实验环境与工具清单
+ |  |  | 类别
+ |  |  | 软件 / 工具
+ |  |  | 建议版本
+ |  |  | 用途说明
+ |  |  | 开发环境
+ |  |  | JDK
+ |  |  | 8 或 11（与教材一致）
+ |  |  | Java 编译与运行
+ |  |  | 开发环境
+ |  |  | IntelliJ IDEA
+ |  |  | 2022.x 及以上（旗舰版/社区版均可）
+ |  |  | 集成开发环境
+ |  |  | 构建工具
+ |  |  | Maven
+ |  |  | 3.8.x，配置阿里云镜像
+ |  |  | 依赖管理与项目构建
+ |  |  | 数据库
+ |  |  | MySQL
+ |  |  | 8.0.x
+ |  |  | 业务数据存储
+ |  |  | 版本控制
+ |  |  | Git
+ |  |  | 2.30 及以上，IDEA 内置集成
+ |  |  | 代码版本管理与协作
+ |  |  | Web 容器
+ |  |  | Apache Tomcat
+ |  |  | 9.x
+ |  |  | Web 应用运行（实验二）
+ |  |  | 日志框架
+ |  |  | Log4j / SLF4J
+ |  |  | Log4j 1.2.x（教学用）或 Logback
+ |  |  | SQL 日志与运行日志
+ |  |  | 单元测试
+ |  |  | JUnit
+ |  |  | 4.13.x
+ |  |  | 持久层与服务层测试
+ |  |  | 接口测试
+ |  |  | ApiFox
+ |  |  | 最新版
+ |  |  | RESTful 接口调试与批量测试
+ |  |  | AI 工具
+ |  |  | 通义灵码 / GitHub Copilot / CodeGeeX（任选其一及以上）
+ |  |  | IDEA 插件版
+ |  |  | AI 辅助代码生成、纠错、重构与文档生成
+
+四、实验守则与纪律
+● 实验前必须完成对应章节的理论学习与课前预习，明确本次实验的目标与内容；
+● 独立完成环境搭建与功能开发，严禁直接复制完整项目代码或抄袭他人成果，一经查实实验成绩记零分；
+● 规范使用 AI 工具：允许利用 AI 生成基础配置、通用代码片段及接口模板，但必须逐行人工校验；严禁直接复制粘贴 AI 生成的完整项目；须完整保留 AI 交互调试记录与代码修改痕迹；
+● 遵守实训室管理制度，按时提交实验成果与实验报告；
+● 树立数据安全与合规开发意识，严禁在代码中硬编码真实账号口令，严禁将涉及隐私的数据带入实验环境。
+五、实验报告要求
+每次实验结束后，须在 3 日内提交实验报告（电子版，Word 或 PDF 格式），内容包括：
+ |  |  | 序号
+ |  |  | 组成部分
+ |  |  | 具体要求
+ |  |  | 1
+ |  |  | 实验概况
+ |  |  | 实验名称、日期、学时、实验环境（版本信息）、同组人员（如有）
+ |  |  | 2
+ |  |  | 实验目标
+ |  |  | 本次实验需达成的知识与能力目标（可参照指导书改写）
+ |  |  | 3
+ |  |  | 实验内容与过程
+ |  |  | 关键步骤说明、核心代码片段（非全部代码）及运行结果截图（须包含控制台 SQL 日志与测试结果）
+ |  |  | 4
+ |  |  | AI 应用记录
+ |  |  | 使用 AI 工具生成的关键内容、提示词摘要、人工校验与修正过程
+ |  |  | 5
+ |  |  | 问题与解决方案
+ |  |  | 实验中遇到的报错（附错误信息与日志）、原因分析与解决过程，至少如实记录 2 个典型问题
+ |  |  | 6
+ |  |  | 实验总结与思考
+ |  |  | 收获体会、思考题解答、对 AI 生成代码质量的评价与改进建议
+
+六、实验成绩评定
+实验实训环节占课程总评 10 分，指导教师依据以下维度综合评定（总分 10 分）：
+ |  |  | 评价维度
+ |  |  | 分值
+ |  |  | 评价要点
+ |  |  | 环境搭建与功能开发
+ |  |  | 4 分
+ |  |  | 环境搭建完整、功能实现正确、程序可正常运行
+ |  |  | 问题排查能力
+ |  |  | 2 分
+ |  |  | 能借助日志与 AI 工具独立定位并解决报错
+ |  |  | AI 工具规范化应用
+ |  |  | 2 分
+ |  |  | 合理使用 AI 辅助开发，保留交互记录，代码经人工校验优化
+ |  |  | 实验报告质量
+ |  |  | 2 分
+ |  |  | 报告完整、规范、真实，问题记录与总结到位
+
+
+
+第二部分　实验一：AI 赋能 MyBatis 与 MyBatis-Plus 环境搭建及 CRUD 实操
+ |  |  | 实验名称
+ |  |  | AI 赋能 MyBatis 与 MyBatis-Plus 环境搭建及 CRUD 实操
+ |  |  | 实验学时
+ |  |  | 6 学时（建议分 3 次完成，每次 2 学时）
+ |  |  | 实验类型
+ |  |  | 验证性 + 设计性
+ |  |  | 对应章节
+ |  |  | 第一章 第 1、2、4、5 节
+ |  |  | 对应课程目标
+ |  |  | 课程目标 1（知识）、课程目标 2（能力）、课程目标 5（AI 能力）
+ |  |  | 思政要素
+ |  |  | 刻苦钻研、持之以恒；工匠精神，严谨规范、精益求精；踏实做事、勇于攻坚
+
+一、实验目的
+● 通过 AI 工具辅助，从零搭建 MyBatis 及 MyBatis-Plus 项目环境，重点攻克依赖冲突与配置报错等技术难点；
+● 掌握持久层框架的基础 CRUD 开发、动态 SQL 编写、分页查询及多条件筛选功能；
+● 掌握 MyBatis 核心组件（SqlSessionFactory、SqlSession、Mapper 接口）的使用与执行流程；
+● 掌握日志（Log4j）集成与 JUnit 单元测试方法，能够依据 SQL 日志排查参数绑定与结果映射问题；
+● 掌握 MyBatis-Plus 通用 CRUD、条件构造器与分页插件的配置与使用；
+● 培养利用 AI 辅助排查框架配置异常及优化数据库操作代码的能力。
+二、实验环境
+JDK 8/11、IntelliJ IDEA、Maven 3.8.x（阿里云镜像）、MySQL 8.0、Git、JUnit 4、Log4j、AI 编程插件（通义灵码 / GitHub Copilot / CodeGeeX 任选）、ApiFox。
+三、知识要点回顾
+● MyBatis 是一款优秀的半自动化 ORM 持久层框架，通过 XML 映射文件或注解将 Java 方法与 SQL 语句映射，消除了 JDBC 几乎所有的手动设置参数与结果集封装代码；
+● 核心组件：SqlSessionFactory（会话工厂，全局唯一）、SqlSession（会话，非线程安全，用完须关闭）、Mapper 接口（面向接口编程，由框架动态代理生成实现）；
+● MyBatis 执行流程：读取配置 → 构建 SqlSessionFactory → 开启 SqlSession → 获取 Mapper 代理 → 执行 SQL → 结果映射 → 返回 Java 对象；
+● MyBatis-Plus（MP）在 MyBatis 的基础上只做增强不做改变，内置通用 Mapper（BaseMapper）、条件构造器（Wrapper）与分页插件，实现单表 CRUD 零 SQL 开发；
+● #{} 采用 PreparedStatement 预编译占位符（防 SQL 注入，首选）；${} 直接字符串拼接（仅用于动态表名/排序字段等场景，须校验输入）。
+四、实验内容与步骤
+本实验以“员工（emp）数据表”为业务载体，围绕 5 个任务展开，建议学时分配：任务 1（2 学时）、任务 2（2 学时）、任务 3（1 学时）、任务 4（1 学时）、任务 5（与各任务穿插完成）。
+任务 1　开发环境搭建与项目初始化（2 学时）
+步骤 1.1 数据库准备
+登录 MySQL，创建实验数据库与员工表并插入测试数据：
+CREATE DATABASE ssm_emp DEFAULT CHARACTER SET utf8mb4;
+USE ssm_emp;
+ 
+CREATE TABLE emp (
+    emp_id     INT PRIMARY KEY AUTO_INCREMENT COMMENT '员工编号',
+    emp_name   VARCHAR(50)  NOT NULL COMMENT '姓名',
+    gender     CHAR(1)      DEFAULT '男' COMMENT '性别',
+    dept       VARCHAR(50)  COMMENT '部门',
+    post       VARCHAR(50)  COMMENT '岗位',
+    salary     DECIMAL(10,2) COMMENT '薪资',
+    hire_date  DATE         COMMENT '入职时间',
+    status     TINYINT      DEFAULT 1 COMMENT '状态：1在职 0离职'
+);
+ 
+INSERT INTO emp (emp_name, gender, dept, post, salary, hire_date, status) VALUES
+('张伟', '男', '研发部', 'Java工程师', 12000.00, '2024-07-01', 1),
+('李娜', '女', '研发部', '前端工程师', 10000.00, '2024-08-15', 1),
+('王强', '男', '市场部', '市场专员', 8000.00, '2023-03-10', 1),
+('赵敏', '女', '人事部', '人事专员', 7500.00, '2022-06-20', 0);
+步骤 1.2 Maven 环境配置
+在 Maven 的 settings.xml 中配置本地仓库路径与阿里云镜像，提升依赖下载速度：
+<!-- settings.xml -->
+<localRepository>D:/maven/repository</localRepository>
+<mirror>
+    <id>aliyunmaven</id>
+    <mirrorOf>*</mirrorOf>
+    <name>阿里云公共仓库</name>
+    <url>https://maven.aliyun.com/repository/public</url>
+</mirror>
+在 IDEA 中通过 File → Settings → Build, Execution, Deployment → Build Tools → Maven 指定 Maven 主目录、settings.xml 与本地仓库路径。
+步骤 1.3 Git 版本控制初始化
+在 IDEA 中通过 VCS → Enable Version Control Integration 启用 Git，并配置全局用户名与邮箱：
+git config --global user.name  "你的姓名拼音"
+git config --global user.email "你的学号邮箱@school.edu.cn"
+完成首次 commit（提交信息建议为 “init: mybatis 环境搭建”），实验过程中每个任务完成节点均须提交一次，保留开发轨迹。
+步骤 1.4 AI 编程插件安装与配置
+在 IDEA 的 Plugins 市场中搜索并安装通义灵码（TONGYI Lingma）、GitHub Copilot 或 CodeGeeX 任一插件，完成登录/激活与工作空间绑定。配置建议：
+● 开启代码自动补全与行内提示；设置生成代码的安全管控策略（重要工程中避免自动应用未审查代码）；
+● 熟悉 AI 对话面板的基本用法：生成代码、解释代码、排查报错、生成注释；
+● 注意：涉及个人隐私、真实账号口令的内容不得发送给 AI 工具。
+步骤 1.5 创建 Maven 项目并引入依赖
+新建 Maven 项目 mybatis-lab（无需使用骨架），在 pom.xml 中引入核心依赖。可先让 AI 生成依赖清单（提示词示例见附录 C），再逐项核对版本统一性：
+<properties>
+    <maven.compiler.source>8</maven.compiler.source>
+    <maven.compiler.target>8</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+</properties>
+ 
+<dependencies>
+    <!-- MyBatis -->
+    <dependency>
+        <groupId>org.mybatis</groupId>
+        <artifactId>mybatis</artifactId>
+        <version>3.5.13</version>
+    </dependency>
+    <!-- MySQL 驱动 -->
+    <dependency>
+        <groupId>com.mysql</groupId>
+        <artifactId>mysql-connector-j</artifactId>
+        <version>8.0.33</version>
+    </dependency>
+    <!-- JUnit -->
+    <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.13.2</version>
+        <scope>test</scope>
+    </dependency>
+    <!-- Log4j -->
+    <dependency>
+        <groupId>log4j</groupId>
+        <artifactId>log4j</artifactId>
+        <version>1.2.17</version>
+    </dependency>
+</dependencies>
+刷新 Maven 依赖，确认无版本冲突（Dependency Analyzer 中无红色冲突项）。
+任务 2　MyBatis 环境搭建与基础 CRUD（2 学时）
+步骤 2.1 编写全局配置文件 mybatis-config.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC
+    "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <!-- 开启驼峰命名自动映射：emp_name -> empName -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <!-- 指定日志实现为 LOG4J -->
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
+    <typeAliases>
+        <!-- 为实体类别名，映射文件中可直接写 Emp -->
+        <package name="com.lab.entity"/>
+    </typeAliases>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url"
+                    value="jdbc:mysql://localhost:3306/ssm_emp?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf8"/>
+                <property name="username" value="root"/>
+                <property name="password" value="你的密码"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <package name="com.lab.mapper"/>
+    </mappers>
+</configuration>
+步骤 2.2 编写实体类
+package com.lab.entity;
+ 
+import java.math.BigDecimal;
+import java.util.Date;
+ 
+public class Emp {
+    private Integer empId;
+    private String empName;
+    private String gender;
+    private String dept;
+    private String post;
+    private BigDecimal salary;
+    private Date hireDate;
+    private Integer status;
+    // 省略 getter/setter/toString（建议使用 AI 生成或引入 Lombok）
+}
+步骤 2.3 编写 Mapper 接口与映射文件
+package com.lab.mapper;
+ 
+import com.lab.entity.Emp;
+import java.util.List;
+ 
+public interface EmpMapper {
+    List<Emp> selectAll();
+    Emp selectById(Integer empId);
+    int insert(Emp emp);
+    int update(Emp emp);
+    int deleteById(Integer empId);
+}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+    "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lab.mapper.EmpMapper">
+ 
+    <!-- 自定义结果映射：解决字段名与属性名不一致 -->
+    <resultMap id="empMap" type="Emp">
+        <id property="empId" column="emp_id"/>
+        <result property="empName" column="emp_name"/>
+        <result property="gender" column="gender"/>
+        <result property="dept" column="dept"/>
+        <result property="post" column="post"/>
+        <result property="salary" column="salary"/>
+        <result property="hireDate" column="hire_date"/>
+        <result property="status" column="status"/>
+    </resultMap>
+ 
+    <sql id="allColumns">
+        emp_id, emp_name, gender, dept, post, salary, hire_date, status
+    </sql>
+ 
+    <select id="selectAll" resultMap="empMap">
+        SELECT <include refid="allColumns"/> FROM emp
+    </select>
+ 
+    <select id="selectById" parameterType="int" resultMap="empMap">
+        SELECT <include refid="allColumns"/> FROM emp WHERE emp_id = #{empId}
+    </select>
+ 
+    <!-- 新增并回填自增主键 -->
+    <insert id="insert" parameterType="Emp"
+            useGeneratedKeys="true" keyProperty="empId">
+        INSERT INTO emp (emp_name, gender, dept, post, salary, hire_date, status)
+        VALUES (#{empName}, #{gender}, #{dept}, #{post}, #{salary}, #{hireDate}, #{status})
+    </insert>
+ 
+    <update id="update" parameterType="Emp">
+        UPDATE emp
+        SET emp_name = #{empName}, gender = #{gender}, dept = #{dept},
+            post = #{post}, salary = #{salary}, status = #{status}
+        WHERE emp_id = #{empId}
+    </update>
+ 
+    <delete id="deleteById" parameterType="int">
+        DELETE FROM emp WHERE emp_id = #{empId}
+    </delete>
+</mapper>
+步骤 2.4 编写第一个 MyBatis 程序
+package com.lab.test;
+ 
+import com.lab.entity.Emp;
+import com.lab.mapper.EmpMapper;
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import java.io.InputStream;
+import java.util.List;
+ 
+public class MyBatisDemo {
+    public static void main(String[] args) throws Exception {
+        // 1. 读取配置文件，构建 SqlSessionFactory（全局只需构建一次）
+        InputStream in = Resources.getResourceAsStream("mybatis-config.xml");
+        SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(in);
+        // 2. 开启 SqlSession（用完必须关闭）
+        try (SqlSession session = factory.openSession()) {
+            // 3. 获取 Mapper 动态代理对象
+            EmpMapper mapper = session.getMapper(EmpMapper.class);
+            List<Emp> list = mapper.selectAll();
+            list.forEach(System.out::println);
+        }
+    }
+}
+运行程序，观察控制台输出。建议将 SqlSessionFactory 的构建过程封装为工具类 MyBatisUtil，避免重复创建。
+步骤 2.5 集成 Log4j 日志
+在 resources 目录下新建 log4j.properties：
+# 全局日志级别与输出目标
+log4j.rootLogger=DEBUG, console
+# 控制台输出
+log4j.appender.console=org.apache.log4j.ConsoleAppender
+log4j.appender.console.layout=org.apache.log4j.PatternLayout
+log4j.appender.console.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss} [%p] %c - %m%n
+# 只对 Mapper 所在包输出 DEBUG 级 SQL 日志
+log4j.logger.com.lab.mapper=DEBUG
+重新运行程序，观察 SQL 语句、参数占位（? 号对应的实参）与结果集行数在日志中的完整输出，理解日志在“追踪 SQL 执行、核对参数绑定、验证结果映射、定位异常、排查性能瓶颈”五个方面的价值。
+步骤 2.6 JUnit 单元测试
+package com.lab.test;
+ 
+import com.lab.entity.Emp;
+import com.lab.mapper.EmpMapper;
+import com.lab.util.MyBatisUtil;
+import org.apache.ibatis.session.SqlSession;
+import org.junit.Test;
+import java.math.BigDecimal;
+import java.util.Date;
+ 
+public class EmpMapperTest {
+ 
+    @Test
+    public void testInsert() {
+        try (SqlSession session = MyBatisUtil.openSession()) {
+            EmpMapper mapper = session.getMapper(EmpMapper.class);
+            Emp emp = new Emp();
+            emp.setEmpName("陈晨"); emp.setGender("女");
+            emp.setDept("研发部"); emp.setPost("测试工程师");
+            emp.setSalary(new BigDecimal("9000"));
+            emp.setHireDate(new Date()); emp.setStatus(1);
+            int rows = mapper.insert(emp);
+            session.commit();          // 增删改必须提交事务
+            org.junit.Assert.assertEquals(1, rows);
+            System.out.println("回填主键 empId = " + emp.getEmpId());
+        }
+    }
+ 
+    @Test
+    public void testUpdate() {
+        try (SqlSession session = MyBatisUtil.openSession()) {
+            EmpMapper mapper = session.getMapper(EmpMapper.class);
+            Emp emp = mapper.selectById(1);
+            emp.setSalary(new BigDecimal("13000"));
+            int rows = mapper.update(emp);
+            session.commit();
+            org.junit.Assert.assertEquals(1, rows);
+        }
+    }
+ 
+    @Test
+    public void testDelete() {
+        try (SqlSession session = MyBatisUtil.openSession()) {
+            int rows = session.getMapper(EmpMapper.class).deleteById(4);
+            session.commit();
+            org.junit.Assert.assertEquals(1, rows);
+        }
+    }
+}
+任务 3　动态 SQL、多条件查询与批量操作（1 学时）
+步骤 3.1 多条件模糊查询（if / where 标签）
+在 EmpMapper 中新增方法 List<Emp> selectByCondition(Emp emp)，映射文件使用动态 SQL：
+<select id="selectByCondition" parameterType="Emp" resultMap="empMap">
+    SELECT <include refid="allColumns"/> FROM emp
+    <where>
+        <if test="empName != null and empName != ''">
+            AND emp_name LIKE CONCAT('%', #{empName}, '%')
+        </if>
+        <if test="gender != null and gender != ''">
+            AND gender = #{gender}
+        </if>
+        <if test="dept != null and dept != ''">
+            AND dept = #{dept}
+        </if>
+        <if test="status != null">
+            AND status = #{status}
+        </if>
+    </where>
+</select>
+体会 <where> 标签自动剔除开头多余 AND/OR 的作用；尝试用 <trim> 标签实现等效逻辑。
+步骤 3.2 动态更新（set 标签）
+<update id="updateDynamic" parameterType="Emp">
+    UPDATE emp
+    <set>
+        <if test="empName != null">emp_name = #{empName},</if>
+        <if test="dept != null">dept = #{dept},</if>
+        <if test="post != null">post = #{post},</if>
+        <if test="salary != null">salary = #{salary},</if>
+        <if test="status != null">status = #{status},</if>
+    </set>
+    WHERE emp_id = #{empId}
+</update>
+步骤 3.3 批量删除与批量插入（foreach 标签）
+<!-- int deleteBatch(@Param("ids") List<Integer> ids); -->
+<delete id="deleteBatch">
+    DELETE FROM emp WHERE emp_id IN
+    <foreach collection="ids" item="id" open="(" separator="," close=")">
+        #{id}
+    </foreach>
+</delete>
+ 
+<!-- int insertBatch(@Param("list") List<Emp> emps); -->
+<insert id="insertBatch">
+    INSERT INTO emp (emp_name, gender, dept, post, salary, hire_date, status) VALUES
+    <foreach collection="list" item="e" separator=",">
+        (#{e.empName}, #{e.gender}, #{e.dept}, #{e.post}, #{e.salary}, #{e.hireDate}, #{e.status})
+    </foreach>
+</insert>
+多参数传递时注意使用 @Param 注解显式命名，避免参数绑定异常（BindingException: Parameter not found）。
+步骤 3.4 分支选择（choose / when / otherwise）
+实现“优先按姓名精确查询，否则按部门查询，否则查询全部”的逻辑，体会 choose 分支与 if 多条件叠加的区别。
+任务 4　MyBatis-Plus 快速开发与分页（1 学时）
+步骤 4.1 引入 MyBatis-Plus 并替换配置
+在 pom.xml 中将 mybatis 依赖替换（或共存）为 MyBatis-Plus（MP 内置 MyBatis 核心）：
+<dependency>
+    <groupId>com.baomidou</groupId>
+    <artifactId>mybatis-plus</artifactId>
+    <version>3.5.3.1</version>
+</dependency>
+修改 mybatis-config.xml：数据源与环境配置保持不变，mappers 注册方式支持 <package name="com.lab.mapper"/> 扫描。
+步骤 4.2 实体类注解映射
+package com.lab.entity;
+ 
+import com.baomidou.mybatisplus.annotation.*;
+import java.math.BigDecimal;
+import java.util.Date;
+ 
+@TableName("emp")
+public class Emp {
+    @TableId(value = "emp_id", type = IdType.AUTO)
+    private Integer empId;
+ 
+    @TableField("emp_name")
+    private String empName;
+ 
+    private String gender;
+    private String dept;
+    private String post;
+    private BigDecimal salary;
+    private Date hireDate;
+ 
+    @TableLogic            // 逻辑删除标记（本实验可选）
+    private Integer status;
+    // getter/setter 略
+}
+步骤 4.3 继承 BaseMapper 实现零 SQL 的通用 CRUD
+package com.lab.mapper;
+ 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.lab.entity.Emp;
+ 
+/** 继承 BaseMapper 即获得 insert/deleteById/updateById/selectById/selectList 等方法 */
+public interface EmpMapper extends BaseMapper<Emp> {
+    // 原有自定义方法仍可保留（XML 与 BaseMapper 共存）
+}
+步骤 4.4 条件构造器实现多条件查询
+// 多条件模糊 + 范围 + 排序
+QueryWrapper<Emp> wrapper = new QueryWrapper<>();
+wrapper.like(StringUtils.isNotBlank(name), "emp_name", name)
+       .eq(StringUtils.isNotBlank(gender), "gender", gender)
+       .eq("status", 1)
+       .ge(minSalary != null, "salary", minSalary)
+       .orderByDesc("salary");
+List<Emp> list = empMapper.selectList(wrapper);
+ 
+// Lambda 写法（推荐，防字段名写错）
+LambdaQueryWrapper<Emp> lw = new LambdaQueryWrapper<>();
+lw.like(Emp::getEmpName, name).eq(Emp::getStatus, 1).orderByDesc(Emp::getSalary);
+步骤 4.5 分页插件配置与分页查询
+// mybatis-config.xml 中注册分页插件
+<plugins>
+    <plugin interceptor="com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor">
+        <property name="@com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor"/>
+    </plugin>
+</plugins>
+// 分页查询：第 1 页，每页 3 条
+Page<Emp> page = new Page<>(1, 3);
+Page<Emp> result = empMapper.selectPage(page, wrapper);
+System.out.println("总记录数 = " + result.getTotal());
+System.out.println("总页数 = " + result.getPages());
+result.getRecords().forEach(System.out::println);
+任务 5　日志排查、ApiFox 准备与 AI 代码甄别（穿插进行）
+步骤 5.1 基于日志的错误排查演练
+故意制造以下三类错误，观察日志现象并记录排查过程（写入实验报告）：
+● 将映射文件中 #{empName} 改为 #{empname}，观察 ParameterBindingException 现象；
+● 将 resultMap 中的 column 写错字段名，观察结果映射为 null 的现象；
+● 删除 <insert> 的 useGeneratedKeys 属性后获取主键，观察主键为 null 的现象。
+步骤 5.2 ApiFox 安装与基础练习
+安装 ApiFox 桌面版，创建工作空间与项目 mybatis-lab。本实验仅需完成：创建一个 GET 请求（可访问任意公开接口）、配置请求头、查看响应、保存为测试用例，为实验二的接口联调做准备。
+步骤 5.3 AI 生成代码的人工审查清单
+对本实验中 AI 生成的依赖配置、映射文件与实体类逐项审查，重点检查：
+● 版本统一性：依赖之间版本是否兼容（如 MP 与 MyBatis、MySQL 驱动与数据库版本）；
+● SQL 正确性：表名/字段名与真实表结构是否一致，是否误用 ${} 拼接用户输入；
+● 映射完整性：resultMap 是否覆盖全部字段，驼峰转换是否生效；
+● 代码规范：命名、缩进、注释是否符合规范，是否存在冗余代码与无用导入。
+审查结论与修改记录须写入实验报告“AI 应用记录”部分。
+五、常见问题与排查
+ |  |  | 错误现象
+ |  |  | 可能原因
+ |  |  | 解决方法
+ |  |  | BindingException: Invalid bound statement (not found)
+ |  |  | 映射文件未注册、namespace 与接口全限定名不一致、XML 未编译到 target
+ |  |  | 核对 mappers 注册方式、namespace、resources 过滤配置
+ |  |  | 参数绑定异常 Parameter not found
+ |  |  | 多参数未加 @Param 注解
+ |  |  | 接口方法参数加 @Param 显式命名
+ |  |  | 查询结果字段为 null
+ |  |  | 字段名与属性名不一致且未开驼峰映射
+ |  |  | 开启 mapUnderscoreToCamelCase 或配置 resultMap
+ |  |  | 依赖冲突 / ClassNotFoundException
+ |  |  | MP 与 MyBatis 版本不兼容、依赖重复
+ |  |  | 使用 Dependency Analyzer 分析，统一由 MP 提供 MyBatis 核心
+ |  |  | 中文乱码
+ |  |  | 连接串缺 characterEncoding 参数
+ |  |  | URL 追加 characterEncoding=utf8，数据库使用 utf8mb4
+ |  |  | 分页不生效，返回全量数据
+ |  |  | 未注册分页插件或拦截器配置错误
+ |  |  | 检查 plugins 配置与 MP 版本对应的写法
+
+六、思考题
+● 简述 #{} 与 ${} 的区别，并说明为什么禁止使用 ${} 接收用户输入；
+● 简述 SqlSessionFactory、SqlSession 与 Mapper 接口三者的关系及生命周期；
+● 什么是 N+1 查询问题？结合本实验的 emp 表，举出一个会产生 N+1 问题的查询场景并给出优化思路；
+● 对比手写 XML 动态 SQL 与 MyBatis-Plus 条件构造器两种实现方式，说明各自的适用场景；
+● 结合本次实验，谈谈 AI 生成代码可能出现哪些质量问题，你采取了哪些人工校验手段。
+七、实验报告要求
+按“实验总则”第五部分的模板撰写实验报告，重点体现：环境搭建关键步骤截图、SQL 日志运行截图、JUnit 测试结果截图、至少 2 个真实问题及解决过程、AI 应用记录（提示词摘要 + 人工修正过程）与思考题解答。
+
+
+第三部分　实验二：AI 赋能 SSM 框架整合与 EMP 员工管理 MIS 系统开发
+ |  |  | 实验名称
+ |  |  | AI 赋能 SSM 框架整合与 EMP 员工管理 MIS 系统开发
+ |  |  | 实验学时
+ |  |  | 10 学时（含双师课堂 2 学时）
+ |  |  | 实验类型
+ |  |  | 综合性 + 设计性
+ |  |  | 对应章节
+ |  |  | 第二章 第 1—5 节
+ |  |  | 对应课程目标
+ |  |  | 课程目标 1（知识）、课程目标 2（能力）、课程目标 3（素质）、课程目标 5（AI 能力）
+ |  |  | 思政要素
+ |  |  | 标准化分层工程思维、精益求精的工匠精神、数据安全与责任担当、团队协作与容错思维
+
+一、实验目的
+● 依托 AI 工具独立完成 SSM 全注解框架整合，深入掌握企业级框架的整合流程与故障排查方法；
+● 熟练运用 Spring（IoC、AOP、事务）、SpringMVC（参数绑定、拦截器、全局异常、RESTful）与 MyBatis-Plus 技术栈，实现 EMP 员工管理 MIS 系统的全功能开发；
+● 结合双师课堂的企业实战经验，规范项目架构设计、代码编写标准及异常处理机制；
+● 掌握使用 ApiFox 开展功能测试、参数验证与异常场景模拟的系统化测试方法；
+● 具备独立开发、调试及优化小型企业 MIS 系统的工程实践能力。
+二、实验环境
+JDK 8/11、IntelliJ IDEA、Maven（阿里云镜像）、MySQL 8.0、Tomcat 9.x、Druid 连接池、Spring 5.3.x、SpringMVC 5.3.x、MyBatis-Plus 3.5.x、Jackson、Hibernate Validator（JSR-303）、Git、AI 编程插件、ApiFox。
+三、项目需求说明
+EMP 员工管理 MIS 系统基于 SSM 全注解架构实现，功能需求如下：
+ |  |  | 功能模块
+ |  |  | 功能点
+ |  |  | 接口（RESTful）
+ |  |  | 员工管理
+ |  |  | 新增员工
+ |  |  | POST /emps
+ |  |  | 员工管理
+ |  |  | 删除员工（支持批量）
+ |  |  | DELETE /emps/{id}、DELETE /emps
+ |  |  | 员工管理
+ |  |  | 修改员工信息
+ |  |  | PUT /emps
+ |  |  | 员工管理
+ |  |  | 单条查询
+ |  |  | GET /emps/{id}
+ |  |  | 员工管理
+ |  |  | 列表 + 多条件模糊 + 分页
+ |  |  | GET /emps（参数：name、gender、dept、page、size）
+ |  |  | 系统健壮性
+ |  |  | 参数校验、全局异常处理、统一返回格式
+ |  |  | —
+ |  |  | 系统健壮性
+ |  |  | 请求日志记录、登录权限拦截
+ |  |  | —
+ |  |  | 数据一致性
+ |  |  | 声明式事务管理
+ |  |  | —
+
+数据库沿用实验一的 ssm_emp 库与 emp 表（可按需补充部门表 dept 实现一对多关联，作为拓展）。
+四、实验内容与步骤
+建议学时分配：任务 1（2 学时，双师课堂）、任务 2（1 学时）、任务 3（2 学时）、任务 4（1 学时）、任务 5（2 学时）、任务 6（1 学时）、任务 7（1 学时）。
+任务 1　双师课堂：企业级 SSM 项目实战解析（2 学时）
+由企业工程师主讲，内容包括：
+● 企业级 SSM 项目的标准开发流程（需求分析 → 架构设计 → 编码 → 测试 → 部署）与真实 MIS 系统架构案例剖析；
+● 企业开发规范：分层架构职责边界、命名规范、Git 分支协作流程、代码评审要点；
+● AI 赋能高效开发的落地经验：AI 代码生成的边界、生成代码的评审制度、安全合规要求；
+● 项目常见痛点（依赖冲突、事务失效、性能瓶颈）的企业级解决方案。
+要求：完成听课笔记，整理“企业开发规范清单”不少于 10 条，作为后续开发的自检依据。
+任务 2　AI 辅助项目初始化与统一依赖管理（1 学时）
+步骤 2.1 创建项目与标准目录结构
+新建 Maven Web 项目 emp-mis，打包方式 war，按企业级标准建立目录结构：
+emp-mis
+├── src/main/java/com/lab/emp
+│   ├── config          // 配置类（Spring、SpringMVC、MyBatis-Plus、拦截器）
+│   ├── controller      // 表现层
+│   ├── service         // 业务层（含 impl）
+│   ├── mapper          // 持久层
+│   ├── entity          // 实体类
+│   ├── dto             // 查询/传输对象
+│   ├── common          // 统一返回、全局异常、常量
+│   └── interceptor     // 拦截器
+├── src/main/resources  // jdbc.properties、日志配置
+└── src/main/webapp/WEB-INF
+步骤 2.2 统一依赖版本
+可让 AI 生成依赖清单后人工核对版本兼容矩阵（Spring 5.3.x ↔ MP 3.5.x ↔ JDK 8/11 ↔ Tomcat 9），核心依赖：
+<dependencies>
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-webmvc</artifactId>
+        <version>5.3.31</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-jdbc</artifactId>
+        <version>5.3.31</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-aspects</artifactId>
+        <version>5.3.31</version>
+    </dependency>
+    <dependency>
+        <groupId>com.baomidou</groupId>
+        <artifactId>mybatis-plus</artifactId>
+        <version>3.5.3.1</version>
+    </dependency>
+    <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>druid</artifactId>
+        <version>1.2.20</version>
+    </dependency>
+    <dependency>
+        <groupId>com.mysql</groupId>
+        <artifactId>mysql-connector-j</artifactId>
+        <version>8.0.33</version>
+    </dependency>
+    <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>2.15.3</version>
+    </dependency>
+    <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>4.0.1</version>
+        <scope>provided</scope>
+    </dependency>
+    <!-- JSR-303 校验 -->
+    <dependency>
+        <groupId>org.hibernate.validator</groupId>
+        <artifactId>hibernate-validator</artifactId>
+        <version>6.2.5.Final</version>
+    </dependency>
+    <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.13.2</version>
+        <scope>test</scope>
+    </dependency>
+</dependencies>
+配置 .gitignore（target/、*.iml、.idea/ 等），完成 Git 首次提交。
+任务 3　SSM 全注解整合配置（2 学时）
+步骤 3.1 Web 初始化配置（替代 web.xml）
+package com.lab.emp.config;
+ 
+import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+import javax.servlet.Filter;
+/** Web 容器初始化：注册前端控制器与编码过滤器 */
+public class ServletContainersInitConfig
+        extends AbstractAnnotationConfigDispatcherServletInitializer {
+ 
+    @Override
+    protected Class<?>[] getRootConfigClasses() {
+        return new Class<?>[]{SpringConfig.class};      // Spring 根容器（Service/Mapper/事务）
+    }
+    @Override
+    protected Class<?>[] getServletConfigClasses() {
+        return new Class<?>[]{SpringMvcConfig.class};   // SpringMVC 子容器（Controller）
+    }
+    @Override
+    protected String[] getServletMappings() {
+        return new String[]{"/"};
+    }
+    @Override
+    protected Filter[] getServletFilters() {
+        CharacterEncodingFilter filter = new CharacterEncodingFilter();
+        filter.setEncoding("UTF-8");
+        filter.setForceEncoding(true);
+        return new Filter[]{filter};
+    }
+}
+步骤 3.2 Spring 根配置（数据源、MyBatis-Plus、事务）
+package com.lab.emp.config;
+ 
+import com.alibaba.druid.pool.DruidDataSource;
+import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.mapper.MapperScannerConfigurer;
+import org.springframework.context.annotation.*;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import javax.sql.DataSource;
+ 
+@Configuration
+@ComponentScan(basePackages = "com.lab.emp",
+        excludeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION,
+                classes = org.springframework.stereotype.Controller.class))
+@PropertySource("classpath:jdbc.properties")
+@EnableTransactionManagement
+public class SpringConfig {
+ 
+    @Bean
+    public DataSource dataSource(
+            @Value("${jdbc.driver}") String driver,
+            @Value("${jdbc.url}") String url,
+            @Value("${jdbc.username}") String user,
+            @Value("${jdbc.password}") String pwd) {
+        DruidDataSource ds = new DruidDataSource();
+        ds.setDriverClassName(driver);
+        ds.setUrl(url);
+        ds.setUsername(user);
+        ds.setPassword(pwd);
+        ds.setInitialSize(5);
+        ds.setMaxActive(20);
+        return ds;
+    }
+ 
+    @Bean
+    public SqlSessionFactoryBean sqlSessionFactory(DataSource ds) throws Exception {
+        SqlSessionFactoryBean fb = new SqlSessionFactoryBean();
+        fb.setDataSource(ds);
+        // 实体类别名包（MP 实体）
+        fb.setTypeAliasesPackage("com.lab.emp.entity");
+        // 注册 MyBatis-Plus 分页插件（import com.baomidou.mybatisplus.extension.plugins.
+        // MybatisPlusInterceptor 与 ...inner.PaginationInnerInterceptor）
+        MybatisPlusInterceptor mp = new MybatisPlusInterceptor();
+        mp.addInnerInterceptor(new PaginationInnerInterceptor());
+        fb.setPlugins(mp);
+        // 开启驼峰映射（使用 MP 提供的 MybatisConfiguration）
+        org.apache.ibatis.session.Configuration cfg =
+                new com.baomidou.mybatisplus.core.MybatisConfiguration();
+        cfg.setMapUnderscoreToCamelCase(true);
+        fb.setConfiguration(cfg);
+        return fb;
+    }
+ 
+    @Bean
+    public MapperScannerConfigurer mapperScannerConfigurer() {
+        MapperScannerConfigurer cfg = new MapperScannerConfigurer();
+        cfg.setBasePackage("com.lab.emp.mapper");
+        return cfg;
+    }
+ 
+    @Bean
+    public DataSourceTransactionManager transactionManager(DataSource ds) {
+        return new DataSourceTransactionManager(ds);
+    }
+}
+说明：示例给出了手工装配方式，学生也可采用 MybatisSqlSessionFactoryBean 等 MP 官方整合写法，或借助 AI 生成后核对每个 Bean 的必要性。jdbc.properties 中保存数据库连接四要素，禁止硬编码在 Java 代码中。
+步骤 3.3 SpringMVC 配置
+package com.lab.emp.config;
+ 
+import com.lab.emp.interceptor.LoginInterceptor;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.*;
+ 
+@Configuration
+@EnableWebMvc
+@ComponentScan("com.lab.emp.controller")
+public class SpringMvcConfig implements WebMvcConfigurer {
+ 
+    /** 静态资源放行 */
+    @Override
+    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer cfg) {
+        cfg.enable();
+    }
+    /** 全局跨域配置：适配前后端分离 */
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedOriginPatterns("*")
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                .allowedHeaders("*")
+                .allowCredentials(true)
+                .maxAge(3600);
+    }
+    /** 注册登录拦截器 */
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new LoginInterceptor())
+                .addPathPatterns("/**")
+                .excludePathPatterns("/login", "/register");
+    }
+}
+步骤 3.4 整合验证
+● 配置 Tomcat 9（或使用 Smart Tomcat 插件）运行项目，确认无 ClassNotFoundException、Bean 注入失败等启动期异常；
+● 编写临时 Controller（返回 "hello"）验证请求链路畅通后删除；
+● 编写 Service 层临时方法调用 MP 的 selectById 验证数据库连通与事务管理器装配；
+● 将验证过程中的报错与解决方法记入实验报告。
+任务 4　数据库设计与 AI 驱动分层代码生成（1 学时）
+步骤 4.1 数据库精细化设计
+以 emp 表为基础完善设计：为 emp_name 建立普通索引，补充合理字段约束（非空、默认值、长度），如拓展可实现 dept 部门表与一对多关联。输出完整的建表 SQL 脚本并纳入 Git 管理（sql/init.sql）。
+步骤 4.2 AI 生成分层代码
+使用 AI 依次生成实体类、Mapper、Service、ServiceImpl、Controller（提示词参考附录 C），生成后必须逐层人工校验：
+● 实体类：@TableName/@TableId 注解与表结构一致，字段类型匹配；
+● Service 层：继承 MP 的 IService 或自定义，业务方法命名语义清晰；
+● Controller 层：RESTful 路径与请求方式符合规范，统一使用 Result 返回。
+步骤 4.3 统一返回结果封装
+package com.lab.emp.common;
+ 
+public class Result<T> {
+    private Integer code;      // 200 成功 / 500 失败 / 401 未登录
+    private String message;
+    private T data;
+ 
+    public static <T> Result<T> ok(T data) {
+        Result<T> r = new Result<>();
+        r.code = 200; r.message = "success"; r.data = data;
+        return r;
+    }
+    public static <T> Result<T> fail(String message) {
+        Result<T> r = new Result<>();
+        r.code = 500; r.message = message;
+        return r;
+    }
+    // getter/setter 略
+}
+任务 5　核心功能开发（2 学时）
+步骤 5.1 Service 层分页多条件查询
+@Override
+public Page<Emp> pageQuery(int page, int size, EmpQueryDTO query) {
+    LambdaQueryWrapper<Emp> wrapper = new LambdaQueryWrapper<>();
+    wrapper.like(StringUtils.isNotBlank(query.getName()), Emp::getEmpName, query.getName())
+           .eq(StringUtils.isNotBlank(query.getGender()), Emp::getGender, query.getGender())
+           .eq(StringUtils.isNotBlank(query.getDept()), Emp::getDept, query.getDept())
+           .orderByDesc(Emp::getEmpId);
+    return empMapper.selectPage(new Page<>(page, size), wrapper);
+}
+步骤 5.2 Controller 层 RESTful 接口
+package com.lab.emp.controller;
+ 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.lab.emp.common.Result;
+import com.lab.emp.entity.Emp;
+import com.lab.emp.service.EmpService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
+ 
+@RestController
+@RequestMapping("/emps")
+public class EmpController {
+ 
+    @Autowired
+    private EmpService empService;
+ 
+    /** 新增 */
+    @PostMapping
+    public Result<Void> add(@RequestBody Emp emp) {
+        empService.save(emp);
+        return Result.ok(null);
+    }
+ 
+    /** 修改 */
+    @PutMapping
+    public Result<Void> update(@RequestBody Emp emp) {
+        empService.updateById(emp);
+        return Result.ok(null);
+    }
+ 
+    /** 单条删除 */
+    @DeleteMapping("/{id}")
+    public Result<Void> delete(@PathVariable Integer id) {
+        empService.removeById(id);
+        return Result.ok(null);
+    }
+ 
+    /** 批量删除 */
+    @DeleteMapping
+    public Result<Void> deleteBatch(@RequestBody List<Integer> ids) {
+        empService.removeByIds(ids);
+        return Result.ok(null);
+    }
+ 
+    /** 单条查询 */
+    @GetMapping("/{id}")
+    public Result<Emp> getById(@PathVariable Integer id) {
+        return Result.ok(empService.getById(id));
+    }
+ 
+    /** 分页 + 多条件 */
+    @GetMapping
+    public Result<Page<Emp>> page(@RequestParam(defaultValue = "1") int page,
+                                  @RequestParam(defaultValue = "5") int size,
+                                  EmpQueryDTO query) {
+        return Result.ok(empService.pageQuery(page, size, query));
+    }
+}
+启动 Tomcat，用 ApiFox 逐一调试以上接口，验证 JSON 交互、状态码与分页结果。
+任务 6　功能健壮性与工程化（1 学时）
+步骤 6.1 JSR-303 参数校验
+// 实体类校验注解
+public class Emp {
+    @NotBlank(message = "员工姓名不能为空")
+    @Size(max = 50, message = "姓名长度不能超过50")
+    private String empName;
+ 
+    @NotNull(message = "薪资不能为空")
+    @DecimalMin(value = "0", message = "薪资不能为负数")
+    private BigDecimal salary;
+    // ...
+}
+ 
+// Controller 开启校验并接收校验结果
+@PostMapping
+public Result<Void> add(@RequestBody @Valid Emp emp, BindingResult br) {
+    if (br.hasErrors()) {
+        return Result.fail(br.getFieldError().getDefaultMessage());
+    }
+    empService.save(emp);
+    return Result.ok(null);
+}
+步骤 6.2 全局异常处理
+package com.lab.emp.common;
+ 
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+ 
+@RestControllerAdvice
+public class GlobalExceptionHandler {
+ 
+    /** 业务异常统一处理 */
+    @ExceptionHandler(BusinessException.class)
+    public Result<Void> handleBiz(BusinessException e) {
+        return Result.fail(e.getMessage());
+    }
+ 
+    /** 兜底异常：避免堆栈直接暴露给前端 */
+    @ExceptionHandler(Exception.class)
+    public Result<Void> handleOther(Exception e) {
+        e.printStackTrace();   // 生产环境应写入日志文件
+        return Result.fail("系统繁忙，请稍后重试");
+    }
+}
+步骤 6.3 登录拦截器
+package com.lab.emp.interceptor;
+ 
+import com.lab.emp.common.Result;
+import org.springframework.web.servlet.HandlerInterceptor;
+import javax.servlet.http.*;
+ 
+public class LoginInterceptor implements HandlerInterceptor {
+    @Override
+    public boolean preHandle(HttpServletRequest req, HttpServletResponse resp,
+                             Object handler) throws Exception {
+        Object user = req.getSession().getAttribute("loginUser");
+        if (user == null) {
+            resp.setContentType("application/json;charset=UTF-8");
+            resp.getWriter().write("{"code":401,"message":"未登录"}");
+            return false;
+        }
+        return true;
+    }
+}
+步骤 6.4 AOP 请求日志切面
+package com.lab.emp.aspect;
+ 
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.*;
+import org.springframework.stereotype.Component;
+import java.util.Arrays;
+ 
+@Aspect
+@Component
+public class WebLogAspect {
+ 
+    @Pointcut("execution(* com.lab.emp.controller..*(..))")
+    public void pt() {}
+ 
+    @Around("pt()")
+    public Object around(ProceedingJoinPoint pjp) throws Throwable {
+        long start = System.currentTimeMillis();
+        String method = pjp.getSignature().toShortString();
+        System.out.println("[REQ] " + method + " 参数：" + Arrays.toString(pjp.getArgs()));
+        try {
+            Object result = pjp.proceed();
+            System.out.println("[RESP] " + method + " 耗时："
+                    + (System.currentTimeMillis() - start) + "ms");
+            return result;
+        } catch (Throwable t) {
+            System.err.println("[ERR] " + method + " 异常：" + t.getMessage());
+            throw t;
+        }
+    }
+}
+步骤 6.5 声明式事务验证
+在 Service 中编写一个“新增员工 + 故意抛出异常”的方法，分别在不加与加上 @Transactional 注解的情况下执行，观察数据库数据变化，验证事务回滚效果：
+@Transactional(rollbackFor = Exception.class)
+public void saveWithTx(Emp emp) {
+    empMapper.insert(emp);
+    int i = 1 / 0;   // 制造运行时异常，验证回滚
+}
+进一步测试典型事务失效场景：异常被 try-catch 吞掉、方法内部自调用（this 调用绕过代理）、注解加在 private 方法上，记录每种场景的现象与原因。
+任务 7　系统化测试与项目复盘（1 学时）
+步骤 7.1 ApiFox 全面测试
+建立测试用例集，覆盖：
+● 正常功能测试：全部 RESTful 接口逐一验证；
+● 参数校验测试：空姓名、负薪资、超长字段等非法参数；
+● 异常场景模拟：不存在的 ID 查询/删除、未登录访问（401）、批量删除空数组；
+● 分页边界：第 0 页、超尾页、size 为 0 或负数。
+将测试用例导出保存，测试记录（含响应截图）纳入实验报告。
+步骤 7.2 AI 辅助调试与性能优化
+● 将接口报错日志交给 AI 分析定位（404：路径与拦截规则；500：空指针与 SQL 异常；数据不一致：映射错误）；
+● 让 AI 评审代码，识别冗余逻辑、重复代码与不规范命名，人工确认后优化；
+● 结合日志中 SQL 执行耗时，对慢查询提出优化建议（如补充索引、避免 SELECT *）。
+步骤 7.3 项目复盘与 Git 收尾
+● 梳理 AI 辅助开发全流程，归纳整合过程中的难点与解决策略，形成个人版“SSM 项目开发方法论”；
+● 整理 Git 提交历史，确保提交信息规范（如 feat/fix/refactor 前缀），完成最终 tag（v1.0.0）；
+● 撰写实验报告，覆盖从需求分析到部署的全流程。
+五、常见问题与排查
+ |  |  | 错误现象
+ |  |  | 可能原因
+ |  |  | 解决方法
+ |  |  | 启动报 ClassNotFoundException: DispatcherServlet
+ |  |  | war 包依赖缺失或 Tomcat 配置错误
+ |  |  | 检查 spring-webmvc 依赖与 Tomcat 部署配置
+ |  |  | NoSuchBeanDefinitionException（注入失败）
+ |  |  | 组件扫描范围不含目标包、Controller 被根容器扫描
+ |  |  | 核对 @ComponentScan 范围与 excludeFilters 配置
+ |  |  | 接口 404
+ |  |  | 拦截路径配置错误、静态资源未放行、方法路径拼写错误
+ |  |  | 核对 getServletMappings、@RequestMapping 路径
+ |  |  | JSON 中文乱码 / 415
+ |  |  | 缺少编码过滤器或 Content-Type 不匹配
+ |  |  | 配置 CharacterEncodingFilter，请求头设 application/json
+ |  |  | 事务不回滚
+ |  |  | 异常被捕获吞掉、自调用、rollbackFor 未指定
+ |  |  | 见任务 6.5，逐项排查事务失效场景
+ |  |  | 端口占用
+ |  |  | Tomcat 端口冲突
+ |  |  | 修改 server.xml 端口或结束占用进程
+ |  |  | Mapper 注入失败
+ |  |  | MapperScannerConfigurer 包路径错误
+ |  |  | 核对 basePackage 与实际包名
+
+六、思考题
+● 阐述 DispatcherServlet 的完整请求处理流程（涉及 HandlerMapping、HandlerAdapter、ViewResolver 或 @ResponseBody）；
+● 说明 Spring 根容器与 SpringMVC 子容器的关系，以及父子容器组件扫描如何划分才能避免冲突；
+● 列举至少 3 种 Spring 事务失效场景并解释其底层原因（提示：从 AOP 代理机制入手）；
+● 拦截器（HandlerInterceptor）与切面（AOP）的执行时机有何不同？各适用于什么场景？
+● RESTful 风格下 PUT 与 POST、DELETE 与 GET 的语义差异是什么？统一返回格式（code/message/data）带来哪些工程价值？
+● 结合本项目，总结“AI 辅助、人脑主导”开发模式下你的工作边界：哪些交给 AI，哪些必须自己完成？
+七、实验报告与交付物要求
+实验报告按“实验总则”第五部分模板撰写，并附交付物清单：
+● 完整项目源码（Git 仓库地址或压缩包，保留完整提交历史与 AI 交互调试痕迹）；
+● 数据库初始化脚本 sql/init.sql；
+● ApiFox 测试用例集与测试记录；
+● 项目架构图（三层架构 + 主要组件）与核心接口清单；
+● “企业开发规范清单”自检表（对照双师课堂笔记逐项自查）。
+
+
+附录
+附录 A　AI 提示词参考
+ |  |  | 场景
+ |  |  | 提示词示例
+ |  |  | 生成依赖
+ |  |  | 请为一个 SSM 项目生成 Maven 依赖清单：Spring 5.3.x + SpringMVC + MyBatis-Plus 3.5.x + Druid + MySQL 8 驱动 + Jackson + Hibernate Validator + JUnit 4，JDK 8，打包 war，并说明各依赖版本兼容性。
+ |  |  | 生成映射文件
+ |  |  | 根据 emp 表结构（emp_id, emp_name, gender, dept, post, salary, hire_date, status）生成 MyBatis 映射文件，包含 resultMap、全字段 SQL 片段、CRUD 及多条件模糊查询（if/where）、批量删除（foreach）。
+ |  |  | 生成配置类
+ |  |  | 生成 SSM 全注解整合配置：ServletContainersInitConfig（继承 AbstractAnnotationConfigDispatcherServletInitializer）、SpringConfig（Druid 数据源、MyBatis-Plus SqlSessionFactory、Mapper 扫描、声明式事务）、SpringMvcConfig（@EnableWebMvc、跨域、拦截器注册、静态资源放行）。
+ |  |  | 排查报错
+ |  |  | （附完整异常堆栈与相关配置）这是我的报错信息，请分析根本原因并给出修复步骤；请先指出最可能的 1—2 个原因，再给出验证方法。
+ |  |  | 代码评审
+ |  |  | 请以企业代码评审标准检查以下 Service/Controller 代码，指出命名不规范、冗余逻辑、潜在空指针与事务问题，并给出优化后的代码。
+
+提示：AI 输出须逐行校验后再采用；将 AI 的修改建议与自己的人工判断对照记录，是实验报告“AI 应用记录”部分的核心素材。
+附录 B　实验报告模板结构
+《JAVA框架技术（一）》实验报告
+ 
+实验名称：____________  姓名：________  学号：________
+班级：________  日期：________  指导教师：________
+ 
+一、实验环境（软件名称与版本）
+二、实验目标
+三、实验内容与过程（关键步骤 + 核心代码 + 运行结果截图）
+四、AI 应用记录（提示词摘要 / 生成内容 / 人工校验与修正）
+五、问题与解决方案（≥2 个典型问题，附错误信息与分析）
+六、实验总结与思考（思考题解答 + 体会）
+附录 C　参考资源
+● 主教材：《Java EE 企业级应用开发教程（Spring+Spring MVC+MyBatis）（第 3 版）》，黑马程序员，人民邮电出版社，2023；
+● 教辅：《解密SSM——从架构到实践》（清华大学出版社，2025）、《SSM + Spring Boot + Vue.js 3 全栈开发从入门到实战（第2版）》（清华大学出版社，2025）；
+● 在线课程：黑马程序员 JavaWeb 全套教程（IDEA 版，B 站：BV1Gk4y1m7rM）；
+● 官方文档：Spring、MyBatis、MyBatis-Plus、Maven、MySQL 官方文档；
+● AI 工具教程：通义灵码、GitHub Copilot、CodeGeeX 使用教程；
+● 开源案例：GitHub 优质 SSM 框架项目案例。
+
